@@ -1,0 +1,2 @@
+class TypeOfDoctor < ApplicationRecord
+end

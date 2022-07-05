@@ -1,0 +1,2 @@
+class Nineclass < ApplicationRecord
+end

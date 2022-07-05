@@ -1,0 +1,2 @@
+class Hotstar < ApplicationRecord
+end
