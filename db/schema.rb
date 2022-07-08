@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_08_064254) do
+ActiveRecord::Schema.define(version: 2022_07_08_095538) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "doctor_id", null: false
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 2022_07_08_064254) do
 
   create_table "bags", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "carcompanies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cartype_names", force: :cascade do |t|
+    t.string "colour"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -64,6 +76,15 @@ ActiveRecord::Schema.define(version: 2022_07_08_064254) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "features", force: :cascade do |t|
+    t.integer "carcompany_id", null: false
+    t.integer "cartype_name_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["carcompany_id"], name: "index_features_on_carcompany_id"
+    t.index ["cartype_name_id"], name: "index_features_on_cartype_name_id"
   end
 
   create_table "hospital1s", force: :cascade do |t|
@@ -189,6 +210,8 @@ ActiveRecord::Schema.define(version: 2022_07_08_064254) do
   add_foreign_key "appointments", "patients"
   add_foreign_key "children", "parents"
   add_foreign_key "colours", "bags"
+  add_foreign_key "features", "carcompanies"
+  add_foreign_key "features", "cartype_names"
   add_foreign_key "people", "families"
   add_foreign_key "subchildren", "subparents"
   add_foreign_key "teachers", "schools"
