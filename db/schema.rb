@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_05_091156) do
+ActiveRecord::Schema.define(version: 2022_07_08_064254) do
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "time"
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
+  end
 
   create_table "bags", force: :cascade do |t|
     t.string "name"
@@ -41,6 +51,13 @@ ActiveRecord::Schema.define(version: 2022_07_05_091156) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bag_id"], name: "index_colours_on_bag_id"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "name"
+    t.string "specialization"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "families", force: :cascade do |t|
@@ -107,6 +124,14 @@ ActiveRecord::Schema.define(version: 2022_07_05_091156) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "patients", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.string "disease"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.integer "sons_number"
@@ -160,6 +185,8 @@ ActiveRecord::Schema.define(version: 2022_07_05_091156) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "patients"
   add_foreign_key "children", "parents"
   add_foreign_key "colours", "bags"
   add_foreign_key "people", "families"
