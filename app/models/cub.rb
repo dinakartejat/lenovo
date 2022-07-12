@@ -1,0 +1,2 @@
+class Cub < ApplicationRecord
+end

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_08_095538) do
+ActiveRecord::Schema.define(version: 2022_07_12_090408) do
+
+  create_table "animals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "Tiger_id", null: false
+    t.index ["Tiger_id"], name: "index_animals_on_Tiger_id"
+  end
 
   create_table "appointments", force: :cascade do |t|
     t.integer "doctor_id", null: false
@@ -40,6 +48,12 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "chairs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "children", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id", null: false
@@ -65,11 +79,25 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.index ["bag_id"], name: "index_colours_on_bag_id"
   end
 
+  create_table "cubs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "specialization"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "Office_id", null: false
+    t.index ["Office_id"], name: "index_employees_on_Office_id"
   end
 
   create_table "families", force: :cascade do |t|
@@ -106,6 +134,14 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "lions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "Cub_id", null: false
+    t.index ["Cub_id"], name: "index_lions_on_Cub_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
@@ -128,6 +164,12 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.integer "telugu"
     t.integer "maths"
     t.integer "social"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "offices", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -162,6 +204,19 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.index ["family_id"], name: "index_people_on_family_id"
   end
 
+  create_table "plastic_colors", force: :cascade do |t|
+    t.integer "plastic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plastic_id"], name: "index_plastic_colors_on_plastic_id"
+  end
+
+  create_table "plastics", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -192,6 +247,12 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.index ["school_id"], name: "index_teachers_on_school_id"
   end
 
+  create_table "tigers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "type_of_doctor1s", force: :cascade do |t|
     t.string "name"
     t.integer "hospital1_id", null: false
@@ -206,14 +267,27 @@ ActiveRecord::Schema.define(version: 2022_07_08_095538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "woods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "Chair_id", null: false
+    t.index ["Chair_id"], name: "index_woods_on_Chair_id"
+  end
+
+  add_foreign_key "animals", "Tigers"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
   add_foreign_key "children", "parents"
   add_foreign_key "colours", "bags"
+  add_foreign_key "employees", "Offices"
   add_foreign_key "features", "carcompanies"
   add_foreign_key "features", "cartype_names"
+  add_foreign_key "lions", "Cubs"
   add_foreign_key "people", "families"
+  add_foreign_key "plastic_colors", "plastics"
   add_foreign_key "subchildren", "subparents"
   add_foreign_key "teachers", "schools"
   add_foreign_key "type_of_doctor1s", "hospital1s"
+  add_foreign_key "woods", "Chairs"
 end
