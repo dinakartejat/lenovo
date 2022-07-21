@@ -1,0 +1,2 @@
+class Microsoft < ApplicationRecord
+end
