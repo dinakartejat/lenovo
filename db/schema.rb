@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_12_090408) do
+ActiveRecord::Schema.define(version: 2022_07_21_043511) do
 
   create_table "animals", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "Tiger_id", null: false
     t.index ["Tiger_id"], name: "index_animals_on_Tiger_id"
+  end
+
+  create_table "applications", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.string "age"
+    t.integer "phonenumber"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "appointments", force: :cascade do |t|
@@ -32,6 +42,34 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
 
   create_table "bags", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bhashyams", force: :cascade do |t|
+    t.string "campusname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "branch1s", force: :cascade do |t|
+    t.string "name"
+    t.integer "stduents1_count"
+    t.integer "course1_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course1_id"], name: "index_branch1s_on_course1_id"
+  end
+
+  create_table "branches", force: :cascade do |t|
+    t.string "name"
+    t.integer "students_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "campus", force: :cascade do |t|
+    t.string "campusplacename"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -79,6 +117,18 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
     t.index ["bag_id"], name: "index_colours_on_bag_id"
   end
 
+  create_table "course1s", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "cubs", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -88,6 +138,12 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
   create_table "doctors", force: :cascade do |t|
     t.string "name"
     t.string "specialization"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "edges", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -113,6 +169,12 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["carcompany_id"], name: "index_features_on_carcompany_id"
     t.index ["cartype_name_id"], name: "index_features_on_cartype_name_id"
+  end
+
+  create_table "govt_hospitals", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "hospital1s", force: :cascade do |t|
@@ -142,10 +204,60 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
     t.index ["Cub_id"], name: "index_lions_on_Cub_id"
   end
 
+  create_table "meeting1s", force: :cascade do |t|
+    t.integer "time"
+    t.string "place"
+    t.integer "govt_hosptial_id", null: false
+    t.integer "specialist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["govt_hosptial_id"], name: "index_meeting1s_on_govt_hosptial_id"
+    t.index ["specialist_id"], name: "index_meeting1s_on_specialist_id"
+  end
+
+  create_table "meetings", force: :cascade do |t|
+    t.integer "time"
+    t.string "place"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "men", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "salary"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+# Could not dump table "microsofts" because of following StandardError
+#   Unknown type 'refereneces' for column 'edge'
+
+  create_table "month_numbers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "Month_Number_id", null: false
+    t.index ["Month_Number_id"], name: "index_months_on_Month_Number_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.integer "rating"
     t.string "series"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "newspapers", force: :cascade do |t|
+    t.string "name"
+    t.integer "noofpages"
+    t.integer "bundleofpapers"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -217,10 +329,33 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "name"
+    t.string "reviewable_type"
+    t.integer "reviewable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "specialists", force: :cascade do |t|
+    t.string "name"
+    t.string "count"
+    t.integer "govt_hospital_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["govt_hospital_id"], name: "index_specialists_on_govt_hospital_id"
   end
 
   create_table "subchildren", force: :cascade do |t|
@@ -267,6 +402,12 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "woods", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -278,14 +419,19 @@ ActiveRecord::Schema.define(version: 2022_07_12_090408) do
   add_foreign_key "animals", "Tigers"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "patients"
+  add_foreign_key "branch1s", "course1s"
   add_foreign_key "children", "parents"
   add_foreign_key "colours", "bags"
   add_foreign_key "employees", "Offices"
   add_foreign_key "features", "carcompanies"
   add_foreign_key "features", "cartype_names"
   add_foreign_key "lions", "Cubs"
+  add_foreign_key "meeting1s", "govt_hosptials"
+  add_foreign_key "meeting1s", "specialists"
+  add_foreign_key "months", "Month_Numbers"
   add_foreign_key "people", "families"
   add_foreign_key "plastic_colors", "plastics"
+  add_foreign_key "specialists", "govt_hospitals"
   add_foreign_key "subchildren", "subparents"
   add_foreign_key "teachers", "schools"
   add_foreign_key "type_of_doctor1s", "hospital1s"

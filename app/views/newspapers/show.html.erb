@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @newspaper.name %>
+</p>
+
+<p>
+  <strong>Noofpages:</strong>
+  <%= @newspaper.noofpages %>
+</p>
+
+<p>
+  <strong>Bundleofpapers:</strong>
+  <%= @newspaper.bundleofpapers %>
+</p>
+
+<%= link_to 'Edit', edit_newspaper_path(@newspaper) %> |
+<%= link_to 'Back', newspapers_path %>

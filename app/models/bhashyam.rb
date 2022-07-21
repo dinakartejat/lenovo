@@ -1,0 +1,2 @@
+class Bhashyam < ApplicationRecord
+end
