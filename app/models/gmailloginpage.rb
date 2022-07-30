@@ -1,0 +1,3 @@
+class Gmailloginpage < ApplicationRecord
+  
+end

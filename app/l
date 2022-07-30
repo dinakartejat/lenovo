@@ -1,0 +1,21 @@
+routes |grep zip
+                                    zips GET    /zips(.:format)         zips#index
+                                         POST   /zips(.:format)          zips#create
+                                 new_zip GET    /zips/new(.:format)    zips#new
+                                edit_zip GET    /zips/:id/edit(.:format)             zips#edit
+                                     zip GET    /zips/:id(.:format)                    zips#show
+                                         PATCH  /zips/:id(.:format)                    zips#update
+                                         PUT    /zips/:id(.
+
+                                         :format)                     zips#update
+                                         DELETE /zips/:id(.:format)                 zips#destroy
+
+
+
+
+                                         edit ==>id
+                                         show ===>id
+                                         deletw==>id\
+                                         update==>id
+                                         member routes
+                                         collection routes
